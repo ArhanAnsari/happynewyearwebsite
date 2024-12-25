@@ -3,23 +3,31 @@ body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   text-align: center;
-  background: radial-gradient(circle, #1a2a6c, #b21f1f, #fdbb2d);
+  background: linear-gradient(to bottom, #1a2a6c, #b21f1f, #fdbb2d);
   color: #fff;
   overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .container {
   padding: 20px;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
 }
 
+/* Header */
 header {
   margin: 20px auto;
   font-size: 2.5rem;
   font-weight: bold;
 }
 
+/* Footer */
 footer {
   margin-top: 50px;
   font-size: 0.9rem;
@@ -28,11 +36,12 @@ footer {
 
 /* Countdown Section */
 .countdown {
-  margin: 50px auto;
+  margin: 20px auto;
   padding: 20px;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
   border-radius: 15px;
   box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+  color: #fff;
 }
 
 .countdown h2 {
