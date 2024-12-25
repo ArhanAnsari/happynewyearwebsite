@@ -10,22 +10,38 @@ document.addEventListener("DOMContentLoaded", () => {
   // Countdown function
   function updateCountdown() {
     const now = new Date();
-    const timeDiff = newYearTime - now;
+    const localTimeDiff = newYearTime - now;
+    const utcNow = new Date(now.toISOString());
+    const utcTimeDiff = newYearTime - utcNow;
 
-    if (timeDiff <= 0) {
+    // Calculate local time countdown
+    const localDays = Math.floor(localTimeDiff / (1000 * 60 * 60 * 24));
+    const localHours = Math.floor((localTimeDiff / (1000 * 60 * 60)) % 24);
+    const localMinutes = Math.floor((localTimeDiff / (1000 * 60)) % 60);
+    const localSeconds = Math.floor((localTimeDiff / 1000) % 60);
+
+    // Calculate UTC countdown
+    const utcDays = Math.floor(utcTimeDiff / (1000 * 60 * 60 * 24));
+    const utcHours = Math.floor((utcTimeDiff / (1000 * 60 * 60)) % 24);
+    const utcMinutes = Math.floor((utcTimeDiff / (1000 * 60)) % 60);
+    const utcSeconds = Math.floor((utcTimeDiff / 1000) % 60);
+
+    // Update local time display
+    if (localTimeDiff <= 0) {
       localTimeElem.textContent = "🎉 Happy New Year! 🎉";
-      utcTimeElem.textContent = "🎆 Welcome to 2025! 🎆";
-      return;
+    } else {
+      localTimeElem.textContent = `${localDays}d ${localHours}h ${localMinutes}m ${localSeconds}s`;
     }
 
-    const hours = Math.floor((timeDiff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((timeDiff / (1000 * 60)) % 60);
-    const seconds = Math.floor((timeDiff / 1000) % 60);
-
-    localTimeElem.textContent = `${hours}h ${minutes}m ${seconds}s`;
-    utcTimeElem.textContent = new Date().toISOString().split("T")[1].split(".")[0];
+    // Update UTC time display
+    if (utcTimeDiff <= 0) {
+      utcTimeElem.textContent = "🎆 Welcome to 2025! 🎆";
+    } else {
+      utcTimeElem.textContent = `${utcDays}d ${utcHours}h ${utcMinutes}m ${utcSeconds}s`;
+    }
   }
 
+  // Start the countdown
   setInterval(updateCountdown, 1000);
 
   // Celebration
