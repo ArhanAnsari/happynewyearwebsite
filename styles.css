@@ -5,11 +5,13 @@ body {
   text-align: center;
   background: radial-gradient(circle, #1a2a6c, #b21f1f, #fdbb2d);
   color: #fff;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .container {
   padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 header {
@@ -27,37 +29,45 @@ footer {
 /* Countdown Section */
 .countdown {
   margin: 50px auto;
-  padding: 30px;
+  padding: 20px;
   background: rgba(0, 0, 0, 0.5);
   border-radius: 15px;
   box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
 }
 
+.countdown h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
 #timers {
   display: flex;
   justify-content: center;
-  gap: 50px;
-  margin-top: 20px;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 #timers div {
-  padding: 15px 25px;
+  padding: 15px 20px;
   background: rgba(255, 255, 255, 0.2);
   border-radius: 8px;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   transition: transform 0.3s;
+  flex: 1 1 45%;
+  max-width: 200px;
+  text-align: center;
 }
 
 #timers div:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
   background: rgba(255, 255, 255, 0.4);
 }
 
 /* Button Styles */
 button {
   margin: 20px auto;
-  padding: 15px 40px;
-  font-size: 1.2rem;
+  padding: 12px 30px;
+  font-size: 1rem;
   font-weight: bold;
   color: #fff;
   background: #ff5722;
@@ -70,7 +80,7 @@ button {
 
 button:hover {
   background: #e64a19;
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 /* Fireworks Section */
@@ -85,7 +95,7 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 3rem;
+  font-size: 2.5rem;
   animation: fadeOut 5s ease-in-out forwards;
 }
 
@@ -103,11 +113,51 @@ button:hover {
   pointer-events: none;
 }
 
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
+/* Responsive Design */
+@media (max-width: 768px) {
+  header {
+    font-size: 2rem;
   }
-  100% {
-    opacity: 0;
+
+  .countdown {
+    padding: 15px;
+  }
+
+  #timers div {
+    font-size: 1rem;
+    padding: 10px 15px;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  footer {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    font-size: 1.8rem;
+  }
+
+  .countdown h2 {
+    font-size: 1.5rem;
+  }
+
+  #timers {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #timers div {
+    max-width: 100%;
+    margin-bottom: 10px;
+  }
+
+  button {
+    font-size: 0.85rem;
   }
 }
