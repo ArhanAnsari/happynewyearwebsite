@@ -1,0 +1,113 @@
+/* Base Styles */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  background: radial-gradient(circle, #1a2a6c, #b21f1f, #fdbb2d);
+  color: #fff;
+  overflow: hidden;
+}
+
+.container {
+  padding: 20px;
+}
+
+header {
+  margin: 20px auto;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+footer {
+  margin-top: 50px;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Countdown Section */
+.countdown {
+  margin: 50px auto;
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+}
+
+#timers {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 20px;
+}
+
+#timers div {
+  padding: 15px 25px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  font-size: 1.5rem;
+  transition: transform 0.3s;
+}
+
+#timers div:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* Button Styles */
+button {
+  margin: 20px auto;
+  padding: 15px 40px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+  background: #ff5722;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 5px 15px rgba(255, 87, 34, 0.5);
+}
+
+button:hover {
+  background: #e64a19;
+  transform: scale(1.1);
+}
+
+/* Fireworks Section */
+#fireworks {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  animation: fadeOut 5s ease-in-out forwards;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Confetti */
+#confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
