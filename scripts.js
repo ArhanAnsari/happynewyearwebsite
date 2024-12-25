@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const fireworksElem = document.getElementById("fireworks");
   const confettiCanvas = document.getElementById("confetti-canvas");
 
-  const newYearTime = new Date(Date.UTC(2025, 0, 1, 0, 0, 0)); // Jan 1, 2025 (UTC)
+  const newYearTime = new Date(Date.UTC(2025, 0, 1, 0, 0, 0)); // January 1, 2025 (UTC)
 
   // Countdown function
   function updateCountdown() {
@@ -44,18 +44,37 @@ document.addEventListener("DOMContentLoaded", () => {
   // Start the countdown
   setInterval(updateCountdown, 1000);
 
-  // Celebration
+  // Celebration button
   celebrateBtn.addEventListener("click", () => {
-    fireworksElem.classList.remove("hidden");
+    fireworksElem.classList.add("show");
     fireworksElem.innerHTML = "<h1>🎆 Happy New Year 2025! 🎆</h1>";
-    setTimeout(() => fireworksElem.classList.add("hidden"), 5000);
     startConfetti();
+    setTimeout(() => fireworksElem.classList.remove("show"), 5000);
   });
 
-  // Confetti Effect
+  // Confetti effect
   function startConfetti() {
-    const confetti = new ConfettiGenerator({ target: confettiCanvas.id });
-    confetti.render();
-    setTimeout(() => confetti.clear(), 5000); // Stop confetti after 5 seconds
+    const duration = 5 * 1000; // 5 seconds
+    const end = Date.now() + duration;
+
+    // Create confetti animation
+    (function frame() {
+      confetti({
+        particleCount: 2,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0 },
+      });
+      confetti({
+        particleCount: 2,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1 },
+      });
+
+      if (Date.now() < end) {
+        requestAnimationFrame(frame);
+      }
+    })();
   }
 });
