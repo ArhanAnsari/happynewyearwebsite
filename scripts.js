@@ -5,35 +5,40 @@ document.addEventListener("DOMContentLoaded", () => {
   const fireworksElem = document.getElementById("fireworks");
   const confettiCanvas = document.getElementById("confetti-canvas");
 
-  const newYearTime = new Date(Date.UTC(2025, 0, 1, 0, 0, 0)); // January 1, 2025 (UTC)
+  const newYearTime = new Date(Date.UTC(2025, 0, 1, 0, 0, 0)); // January 1, 2025, at midnight UTC
 
   // Countdown function
   function updateCountdown() {
     const now = new Date();
-    const localTimeDiff = newYearTime - now;
-    const utcNow = new Date(now.toISOString());
-    const utcTimeDiff = newYearTime - utcNow;
 
-    // Calculate local time countdown
+    // Local Time Difference
+    const localTimeDiff = new Date(
+      newYearTime.getTime() - now.getTimezoneOffset() * 60 * 1000
+    ) - now;
+
+    // UTC Time Difference
+    const utcTimeDiff = newYearTime - now;
+
+    // Local Countdown
     const localDays = Math.floor(localTimeDiff / (1000 * 60 * 60 * 24));
     const localHours = Math.floor((localTimeDiff / (1000 * 60 * 60)) % 24);
     const localMinutes = Math.floor((localTimeDiff / (1000 * 60)) % 60);
     const localSeconds = Math.floor((localTimeDiff / 1000) % 60);
 
-    // Calculate UTC countdown
+    // UTC Countdown
     const utcDays = Math.floor(utcTimeDiff / (1000 * 60 * 60 * 24));
     const utcHours = Math.floor((utcTimeDiff / (1000 * 60 * 60)) % 24);
     const utcMinutes = Math.floor((utcTimeDiff / (1000 * 60)) % 60);
     const utcSeconds = Math.floor((utcTimeDiff / 1000) % 60);
 
-    // Update local time display
+    // Update Local Time Display
     if (localTimeDiff <= 0) {
       localTimeElem.textContent = "🎉 Happy New Year! 🎉";
     } else {
       localTimeElem.textContent = `${localDays}d ${localHours}h ${localMinutes}m ${localSeconds}s`;
     }
 
-    // Update UTC time display
+    // Update UTC Time Display
     if (utcTimeDiff <= 0) {
       utcTimeElem.textContent = "🎆 Welcome to 2025! 🎆";
     } else {
@@ -57,7 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const duration = 5 * 1000; // 5 seconds
     const end = Date.now() + duration;
 
-    // Create confetti animation
     (function frame() {
       confetti({
         particleCount: 2,
